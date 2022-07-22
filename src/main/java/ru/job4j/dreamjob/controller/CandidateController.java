@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import ru.job4j.dreamjob.model.Candidate;
 import ru.job4j.dreamjob.model.CandidateStore;
 
+import java.time.LocalDateTime;
+
 @Controller
 public class CandidateController {
 
@@ -19,7 +21,8 @@ public class CandidateController {
 
     @GetMapping("/formAddCandidate")
     public String addCandidate(Model model) {
-        model.addAttribute("post", new Candidate());
+        model.addAttribute("post", new Candidate(0, "имя", "описание",
+                LocalDateTime.now()));
         return "addCandidate";
     }
 }
