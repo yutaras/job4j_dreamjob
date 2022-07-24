@@ -1,9 +1,11 @@
 package ru.job4j.dreamjob.model;
 
+import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
+@ThreadSafe
 @Service
 public class PostService {
 
