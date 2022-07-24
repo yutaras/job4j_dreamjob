@@ -1,13 +1,16 @@
 package ru.job4j.dreamjob.model;
 
+import org.springframework.stereotype.Service;
+
 import java.util.Collection;
 
+@Service
 public class PostService {
-    private static final PostService INST = new PostService();
-    private final PostStore store = PostStore.instOf();
 
-    public static PostService instOf() {
-        return INST;
+    private final PostStore store;
+
+    public PostService(PostStore store) {
+        this.store = store;
     }
 
     public void add(Post post) {

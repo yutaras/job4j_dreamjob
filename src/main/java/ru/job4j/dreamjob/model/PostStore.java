@@ -1,14 +1,16 @@
 package ru.job4j.dreamjob.model;
 
+import org.springframework.stereotype.Repository;
+
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+@Repository
 public class PostStore {
 
-    private static final PostStore INST = new PostStore();
     private static final AtomicInteger ID = new AtomicInteger(3);
 
     private final Map<Integer, Post> posts = new ConcurrentHashMap<>();
@@ -22,9 +24,6 @@ public class PostStore {
                 LocalDateTime.of(2021, 12, 10, 0, 0, 0, 0)));
     }
 
-    public static PostStore instOf() {
-        return INST;
-    }
 
     public Collection<Post> findAll() {
         return posts.values();
