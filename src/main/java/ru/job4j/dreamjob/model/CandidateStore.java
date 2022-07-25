@@ -1,6 +1,7 @@
 package ru.job4j.dreamjob.model;
 
 import net.jcip.annotations.ThreadSafe;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -9,8 +10,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @ThreadSafe
+@Repository
 public class CandidateStore {
-    private static final CandidateStore INST = new CandidateStore();
 
     private static final AtomicInteger ID = new AtomicInteger(3);
 
@@ -23,10 +24,6 @@ public class CandidateStore {
                 LocalDateTime.of(2022, 7, 31, 0, 0, 0, 0)));
         candidates.put(3, new Candidate(3, "Петр", "какое-то описание",
                 LocalDateTime.of(2017, 8, 10, 0, 0, 0, 0)));
-    }
-
-    public static CandidateStore instOf() {
-        return INST;
     }
 
     public Collection<Candidate> findAll() {
