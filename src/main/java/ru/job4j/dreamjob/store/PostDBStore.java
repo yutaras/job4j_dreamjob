@@ -35,7 +35,7 @@ public class PostDBStore {
                             it.getString("description"),
                             it.getTimestamp("created").toLocalDateTime(),
                             it.getBoolean("visible"),
-                            new City(it.getInt("city_id"))
+                            new City(it.getInt("city_id"), null)
                     ));
                 }
             }
@@ -74,12 +74,14 @@ public class PostDBStore {
              PreparedStatement ps =
                      cn.prepareStatement(
                              "UPDATE post SET name = ?, description = ?, created = ?, "
-                                     + "visible = ?, city_id =?  WHERE id = ?")) {
+                                     + "visible = ?, city_id =?  WHERE id = ?",
+                             PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, post.getName());
             ps.setString(2, post.getDescription());
-            ps.setBoolean(3, post.isVisible());
-            ps.setInt(4, post.getCity().getId());
-            ps.setInt(5, post.getId());
+            ps.setTimestamp(3, Timestamp.valueOf(post.getCreated()));
+            ps.setBoolean(4, post.isVisible());
+            ps.setInt(5, post.getCity().getId());
+            ps.setInt(6, post.getId());
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -99,7 +101,7 @@ public class PostDBStore {
                             it.getString("description"),
                             it.getTimestamp("created").toLocalDateTime(),
                             it.getBoolean("visible"),
-                            new City(it.getInt("city_id"))
+                            new City(it.getInt("city_id"), null)
                     );
                 }
             }

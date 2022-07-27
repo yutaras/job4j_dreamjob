@@ -13,11 +13,6 @@ public class City {
         this.id = id;
         this.name = name;
     }
-
-    public City(int id) {
-        this.id = id;
-    }
-
     public int getId() {
         return id;
     }

@@ -1,8 +1,8 @@
-CREATE TABLE post (
+CREATE TABLE if not exists post (
                       id SERIAL PRIMARY KEY,
                       name TEXT,
                       description TEXT,
-                      created DATE,
+                      created TIMESTAMP,
                       visible BOOLEAN,
                       city_id INT
 );
