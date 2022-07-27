@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import ru.job4j.dreamjob.model.Post;
 import ru.job4j.dreamjob.store.PostDBStore;
 
-import java.util.Collection;
 import java.util.List;
 
 @ThreadSafe
@@ -29,7 +28,7 @@ public class PostService {
     }
 
     public Post findById(int id) {
-        Post post =  store.findById(id);
+        Post post = store.findById(id);
         post.setCity(cityService.findById(post.getCity().getId()));
         return post;
     }
@@ -41,7 +40,7 @@ public class PostService {
                         cityService.findById(post.getCity().getId())
                 )
         );
-        return store.findAll();
+        return posts;
     }
 }
 
