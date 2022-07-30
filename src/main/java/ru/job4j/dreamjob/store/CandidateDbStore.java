@@ -77,8 +77,7 @@ public class CandidateDbStore {
              PreparedStatement ps =
                      cn.prepareStatement(
                              "UPDATE candidate SET name = ?, description = ?, created = ?,"
-                                     + " photo = ? WHERE id = ?",
-                             PreparedStatement.RETURN_GENERATED_KEYS)) {
+                                     + " photo = ? WHERE id = ?")) {
             ps.setString(1, candidate.getName());
             ps.setString(2, candidate.getDesc());
             ps.setTimestamp(3, Timestamp.valueOf(candidate.getCreated()));
