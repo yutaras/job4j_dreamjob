@@ -78,8 +78,7 @@ public class PostDBStore {
              PreparedStatement ps =
                      cn.prepareStatement(
                              "UPDATE post SET name = ?, description = ?, created = ?, "
-                                     + "visible = ?, city_id =?  WHERE id = ?",
-                             PreparedStatement.RETURN_GENERATED_KEYS)) {
+                                     + "visible = ?, city_id =?  WHERE id = ?")) {
             ps.setString(1, post.getName());
             ps.setString(2, post.getDescription());
             ps.setTimestamp(3, Timestamp.valueOf(post.getCreated()));
