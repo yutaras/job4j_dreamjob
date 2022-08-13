@@ -29,7 +29,7 @@ public class UserDbStore {
         Optional<User> rsl = Optional.empty();
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
-                     "INSERT INTO user(email, password) VALUES (?,?)",
+                     "INSERT INTO users(email, password) VALUES (?,?)",
                      PreparedStatement.RETURN_GENERATED_KEYS)
         ) {
             ps.setString(1, user.getEmail());
@@ -45,12 +45,14 @@ public class UserDbStore {
             LOG.error("Exception in log", e);
         }
         return rsl;
+
     }
 
     public Optional<User> findUserByEmailAndPwd(String email, String password) {
         Optional<User> rsl = Optional.empty();
         try (Connection cn = pool.getConnection();
-             PreparedStatement ps = cn.prepareStatement("SELECT * FROM user WHERE email = ? AND password = ? ")
+             PreparedStatement ps = cn.prepareStatement("SELECT * FROM users "
+                     + "WHERE email = ? AND password = ? ")
         ) {
             ps.setString(1, email);
             ps.setString(2, password);

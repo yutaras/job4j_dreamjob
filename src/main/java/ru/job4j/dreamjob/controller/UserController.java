@@ -37,13 +37,19 @@ public class UserController {
         }
         return "redirect:/index";
     }
+    @GetMapping("/formAddUser")
+    public String addUser(Model model) {
+        model.addAttribute("user", new User(0, "Введите почту", "Введите пароль"));
+        return "addUser";
+    }
+
     @PostMapping("/registration")
     public String registration(Model model, @ModelAttribute User user) {
         Optional<User> regUser = userService.add(user);
         if (regUser.isEmpty()) {
             model.addAttribute("message", "Пользователь с такой почтой уже существует");
-            return "redirect:/fail";
+            return "fail";
         }
-        return "redirect:/success";
+        return "success";
     }
 }

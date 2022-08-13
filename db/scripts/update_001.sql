@@ -20,4 +20,4 @@ CREATE TABLE users (
   email varchar,
   password TEXT
 );
-ALTER TABLE users ADD CONSTRAINT email_unique UNIQUE (email)
+ALTER TABLE users ADD CONSTRAINT email_unique UNIQUE (email);
